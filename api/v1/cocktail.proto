@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package api.v1;
+option go_package = "api/v1/cocktail";
+
+message Cocktail {
+  string id = 1;
+  string name = 2;
+  repeated string notes = 3;
+  map<string, float> ingredients = 4;
+  repeated string steps = 5;
+}
+
+message Ingredients {
+  string item = 1;
+  float amount = 2;
+}
+
+message GetCocktailRequest {
+  Cocktail cocktail = 1;
+}
+
+message GetCocktailResponse {
+
+}
+
+message ListCocktailsRequest {
+
+}
+
+message ListCocktailsResponse {
+  repeated Cocktail cocktails = 1;
+}
+
+message CreateCocktailRequest {
+  Cocktail cocktail =1;
+}
+
+message CreateCocktailResponse {
+
+}
+
+message UpdateCocktailRequest {
+  Cocktail cocktail = 1;
+}
+
+message UpdateCocktailResponse {
+
+}
+
+message DeleteCocktailRequest {
+  string id =1;
+}
+
+message DeleteCocktailResponse {
+
+}
+
+// Haha
+service CocktailService {
+  rpc GetCocktail(GetCocktailRequest) returns (GetCocktailResponse);
+  rpc ListCocktails(ListCocktailsRequest) returns (ListCocktailsResponse);
+  rpc CreateCocktail(CreateCocktailRequest) returns (CreateCocktailResponse);
+  rpc UpdateCocktail(UpdateCocktailRequest) returns (UpdateCocktailResponse);
+  rpc DeleteCocktail(DeleteCocktailRequest) returns (DeleteCocktailResponse);
+}
