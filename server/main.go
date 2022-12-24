@@ -35,16 +35,15 @@ func run() error {
 	return nil
 }
 
-// petStoreServiceServer implements the PetStoreService API.
-type petStoreServiceServer struct {
-	petv1.UnimplementedPetStoreServiceServer
+// cocktailServiceServer implements the CocktailServiceServer API.
+type cocktailServiceServer struct {
+	cocktailv1.UnimplementedCocktailServiceServer
 }
 
 // PutPet adds the pet associated with the given request into the PetStore.
-func (s *petStoreServiceServer) PutPet(ctx context.Context, req *petv1.PutPetRequest) (*petv1.PutPetResponse, error) {
-	name := req.GetName()
-	petType := req.GetPetType()
-	log.Println("Got a request to create a", petType, "named", name)
+func (s *cocktailServiceServer) CreateCocktail(ctx context.Context, req *cocktailv1.CreateCocktailRequest) (*cocktailv1.CreateCocktailResponse, error) {
+	name := req.Cocktail.Name
+	log.Println("Got a request to create a", name)
 
-	return &petv1.PutPetResponse{}, nil
+	return &cocktailv1.CreateCocktailResponse{}, nil
 }
