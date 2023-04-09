@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net"
@@ -9,7 +8,9 @@ import (
 	// This import path is based on the name declaration in the go.mod,
 	// and the gen/proto/go output location in the buf.gen.yaml.
 	cocktailv1 "github.com/jestradaramos/sho/api/gen/go/v1"
+	"github.com/jestradaramos/sho/pkg/cocktails"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -26,24 +27,12 @@ func run() error {
 	}
 
 	server := grpc.NewServer()
-	cocktailv1.RegisterCocktailServiceServer(server, &cocktailServiceServer{})
+	reflection.Register(server)
+	cocktailv1.RegisterCocktailServiceServer(server, &cocktails.CocktailServiceServer{})
 	log.Println("Listening on", listenOn)
 	if err := server.Serve(listener); err != nil {
 		return fmt.Errorf("failed to serve gRPC server: %w", err)
 	}
 
 	return nil
-}
-
-// cocktailServiceServer implements the CocktailServiceServer API.
-type cocktailServiceServer struct {
-	cocktailv1.UnimplementedCocktailServiceServer
-}
-
-// PutPet adds the pet associated with the given request into the PetStore.
-func (s *cocktailServiceServer) CreateCocktail(ctx context.Context, req *cocktailv1.CreateCocktailRequest) (*cocktailv1.CreateCocktailResponse, error) {
-	name := req.Cocktail.Name
-	log.Println("Got a request to create a", name)
-
-	return &cocktailv1.CreateCocktailResponse{}, nil
 }
