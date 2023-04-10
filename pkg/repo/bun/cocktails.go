@@ -54,6 +54,37 @@ func (c *CocktailRepo) GetCocktail(ctx context.Context, id string) (*Cocktail, e
 	return &model, nil
 }
 
+func (c *CocktailRepo) ListCocktail(ctx context.Context) (*[]Cocktail, error) {
+	model := []Cocktail{}
+	err := c.DB.NewSelect().Model(&model).Scan(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &model, nil
+}
+
+func (c *CocktailRepo) UpdateCocktail(ctx context.Context, cocktail *cocktailv1.Cocktail) error {
+	model, err := fromProtoToRepo(cocktail)
+	if err != nil {
+		return err
+	}
+	_, err = c.DB.NewUpdate().Model(&model).Where("id = ?", cocktail.Id).Exec(ctx)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *CocktailRepo) DeleteCocktail(ctx context.Context, id string) error {
+	model := Cocktail{}
+	_, err := c.DB.NewDelete().Model(&model).Where("id = ?", id).Exec(ctx)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func fromProtoToRepo(cocktail *cocktailv1.Cocktail) (Cocktail, error) {
 	model := Cocktail{
 		Name:        cocktail.Name,

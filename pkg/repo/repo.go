@@ -10,7 +10,7 @@ import (
 type Repo interface {
 	CreateCocktail(context.Context, *cocktailv1.Cocktail) (string, error)
 	GetCocktail(context.Context, string) (*bun.Cocktail, error)
-	// ListCocktail() []cocktailv1.Cocktail
-	// UpdateCocktail(c cocktailv1.Cocktail) error
-	// DeleteCocktail() error
+	ListCocktail(context.Context) (*[]bun.Cocktail, error)
+	UpdateCocktail(context.Context, *cocktailv1.Cocktail) error
+	DeleteCocktail(context.Context, string) error
 }
