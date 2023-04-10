@@ -7,17 +7,12 @@ message Cocktail {
   string id = 1;
   string name = 2;
   repeated string notes = 3;
-  repeated Ingredients ingredients = 4;
+  repeated string ingredients = 4;
   repeated string steps = 5;
 }
 
-message Ingredients {
-  string item = 1;
-  float amount = 2;
-}
-
 message GetCocktailRequest {
-  Cocktail cocktail = 1;
+  string id = 1;
 }
 
 message GetCocktailResponse {

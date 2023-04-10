@@ -18,11 +18,11 @@ func New(repo repo.Repo) *CocktailServiceServer {
 	return &CocktailServiceServer{repo}
 }
 
-// CreateCocktail adds a cocktail
+// CreateCocktail adds a cocktail and generates a UUID
 func (s *CocktailServiceServer) CreateCocktail(ctx context.Context, req *cocktailv1.CreateCocktailRequest) (*cocktailv1.CreateCocktailResponse, error) {
 	name := req.Cocktail.Name
 	log.Println("Got a request to create a", name)
-	id, err := s.repo.CreateCocktail(context.Background(), req.Cocktail)
+	id, err := s.repo.CreateCocktail(ctx, req.Cocktail)
 	if err != nil {
 		return nil, err
 	}
@@ -31,22 +31,34 @@ func (s *CocktailServiceServer) CreateCocktail(ctx context.Context, req *cocktai
 	return &cocktailv1.CreateCocktailResponse{}, nil
 }
 
-// CreateCocktail adds a cocktail
+// GetCocktail retrieves a cocktail by it UUID
 func (s *CocktailServiceServer) GetCocktail(ctx context.Context, req *cocktailv1.GetCocktailRequest) (*cocktailv1.GetCocktailResponse, error) {
-	name := req.Cocktail.Name
-	log.Println("Got a request to get a", name)
+	id := req.Id
+	log.Println("Got a request to get a", id)
+	cocktail, err := s.repo.GetCocktail(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
-	return &cocktailv1.GetCocktailResponse{}, nil
+	response := cocktailv1.Cocktail{
+		Id:          cocktail.ID.String(),
+		Name:        cocktail.Name,
+		Notes:       cocktail.Notes,
+		Ingredients: cocktail.Ingredients,
+		Steps:       cocktail.Steps,
+	}
+
+	return &cocktailv1.GetCocktailResponse{Cocktail: &response}, nil
 }
 
-// CreateCocktail adds a cocktail
+// ListCocktails Lists all available cocktails
 func (s *CocktailServiceServer) ListCocktails(ctx context.Context, req *cocktailv1.ListCocktailsRequest) (*cocktailv1.ListCocktailsResponse, error) {
 	log.Println("Got a request to list all cocktails")
 
 	return &cocktailv1.ListCocktailsResponse{}, nil
 }
 
-// CreateCocktail adds a cocktail
+// UpdateCocktail updates an existing cocktail
 func (s *CocktailServiceServer) UpdateCocktail(ctx context.Context, req *cocktailv1.UpdateCocktailRequest) (*cocktailv1.UpdateCocktailResponse, error) {
 	name := req.Cocktail.Name
 	log.Println("Got a request to update", name)
@@ -54,7 +66,7 @@ func (s *CocktailServiceServer) UpdateCocktail(ctx context.Context, req *cocktai
 	return &cocktailv1.UpdateCocktailResponse{}, nil
 }
 
-// CreateCocktail adds a cocktail
+// DeleteCocktail Removes a cocktail by its UUID
 func (s *CocktailServiceServer) DeleteCocktail(ctx context.Context, req *cocktailv1.DeleteCocktailRequest) (*cocktailv1.DeleteCocktailResponse, error) {
 	id := req.Id
 	log.Println("Got a request to delete ", id)

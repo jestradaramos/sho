@@ -3,7 +3,6 @@ package bun
 import (
 	"context"
 	"database/sql"
-	"fmt"
 
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/pgdialect"
@@ -43,19 +42,27 @@ func (c *CocktailRepo) CreateCocktail(ctx context.Context, cocktail *cocktailv1.
 		return "", err
 	}
 
-	return model.ID, nil
+	return model.ID.String(), nil
+}
+
+func (c *CocktailRepo) GetCocktail(ctx context.Context, id string) (*Cocktail, error) {
+	model := Cocktail{}
+	// formatID, err := uuid.Parse(id)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	err := c.DB.NewSelect().Model(&model).Where("id = ?", id).Scan(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &model, nil
 }
 
 func fromProtoToRepo(cocktail *cocktailv1.Cocktail) (Cocktail, error) {
-	ingredients := []string{}
-	for _, i := range cocktail.Ingredients {
-		in := fmt.Sprintf("%voz %v", i.Amount, i.Item)
-		ingredients = append(ingredients, in)
-	}
 	model := Cocktail{
 		Name:        cocktail.Name,
 		Notes:       cocktail.Notes,
-		Ingredients: ingredients,
+		Ingredients: cocktail.Ingredients,
 		Steps:       cocktail.Steps,
 	}
 	return model, nil
