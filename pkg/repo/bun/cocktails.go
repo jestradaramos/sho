@@ -47,10 +47,6 @@ func (c *CocktailRepo) CreateCocktail(ctx context.Context, cocktail *cocktailv1.
 
 func (c *CocktailRepo) GetCocktail(ctx context.Context, id string) (*Cocktail, error) {
 	model := Cocktail{}
-	// formatID, err := uuid.Parse(id)
-	// if err != nil {
-	// 	return nil, err
-	// }
 	err := c.DB.NewSelect().Model(&model).Where("id = ?", id).Scan(ctx)
 	if err != nil {
 		return nil, err
