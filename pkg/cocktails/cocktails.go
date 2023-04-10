@@ -41,13 +41,7 @@ func (s *CocktailServiceServer) GetCocktail(ctx context.Context, req *cocktailv1
 		return nil, err
 	}
 
-	response := cocktailv1.Cocktail{
-		Id:          cocktail.ID.String(),
-		Name:        cocktail.Name,
-		Notes:       cocktail.Notes,
-		Ingredients: cocktail.Ingredients,
-		Steps:       cocktail.Steps,
-	}
+	response := fromRepoToProto(*cocktail)
 
 	return &cocktailv1.GetCocktailResponse{Cocktail: &response}, nil
 }
