@@ -12,21 +12,23 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <>
+    <Image
+        src='/JER09793.jpg'
+        alt='Greenpointe'
+        quality={100}
+        fill
+        style={{ objectFit: 'cover' }}
+      />
       <Head>
         <title>Jeffy's Bar</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Image
-        src='/JER09793.jpg'
-        alt='Greenpointe'
-        quality={100}
-        fill
-        style={{ objectFit: 'cover', position: 'absolute' }}
-      />
-
-
       <NavBar></NavBar>
+
+      <Typography className='MainAlignName' variant="h5" component="div"  color='#F1DAC4'>
+        greenpointe
+      </Typography>
 
       <div className='MainAlignButtons'>
         <Stack justifyContent={'center'} direction='row' spacing={{ xs: 4, sm: 8 }}>
@@ -34,16 +36,6 @@ export default function Home() {
           <Button variant='secondary'>Search Others</Button>
         </Stack>
       </div>
-
-
-      <Typography variant="h4" component="div"  color='#F1DAC4'>
-        GreenPointe
-      </Typography>
-
-
-
-
-
     </>
   )
 }
