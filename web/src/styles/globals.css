@@ -1,0 +1,28 @@
+:root {
+    --main-color: '#161B33';
+    --secondary-color: '#F1DAC4';
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
+.MainAlignButtons {
+    position: absolute;
+    bottom: 25%;
+    width: 100vw;
+    justify-content: center;
+}
+
+.MainAlignName {
+    position: absolute;
+    width: 100vw;
+    text-align: center;
+    top: 15%;
+}
+
+.NavButton {
+    width: 5vw;
+}
