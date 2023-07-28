@@ -1,28 +1,21 @@
 :root {
-    --main-color: '#161B33';
-    --secondary-color: '#F1DAC4';
+    --main-color: #161B33;
+    --main-color-fade: rgba(22, 27, 51, 0.8);
+    --secondary-color: #F1DAC4;
+    --secondary-color-fade: rgba(241, 218, 196, 0.6);
+    --background-color: #FFFFFF;
 }
 
-body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-}
-
-.MainAlignButtons {
-    position: absolute;
-    bottom: 25%;
-    width: 100vw;
+.home {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: var(--background-color);
 }
 
-.MainAlignName {
-    position: absolute;
-    width: 100vw;
-    text-align: center;
-    top: 15%;
-}
-
-.NavButton {
-    width: 5vw;
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
 }

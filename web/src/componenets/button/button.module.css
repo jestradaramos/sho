@@ -1,0 +1,40 @@
+/* @import '../../styles/globals.css'; */
+
+.button {
+    margin: 6px 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+}
+.primaryBtn {
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    border-radius: 6px;
+    font-weight: 400;
+}
+
+.secondaryBtn {
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    border-radius: 6px;
+    font-weight: 400;
+    border: 1px solid var(--main-color)
+}
+
+.tertiaryBtn {
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
+/* Work on hover transition, a little too basic */
+.primaryBtn:hover {
+    background-color: var(--main-color-fade);
+    transition: 0.5s;
+}
+
+.secondaryBtn:hover {
+    background-color: var(--secondary-color-fade);
+    transition: 0.5s;
+}
