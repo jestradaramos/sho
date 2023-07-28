@@ -10,12 +10,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     min-width: 100vw;
-    background-color: var(--background-color);
 }
 
-.btn-wrapper {
+.btnWrapper {
     display: flex;
     flex-direction: column;
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+   }

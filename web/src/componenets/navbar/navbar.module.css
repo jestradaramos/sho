@@ -1,0 +1,47 @@
+.navBar {
+    color: var(--mainz-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.siteName {
+    color: var(--secondary-color);
+    font-size: 2rem;
+}
+
+.navBar a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+}
+
+.navBar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.navBar li {
+    background-color: var(--secondary-color);
+}
+
+.loginBtn {
+    margin: 6px 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 24px;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    border-radius: 4px;
+    font-weight: 400;
+}
