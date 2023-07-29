@@ -10,13 +10,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 20vh;
     min-width: 100vw;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    color: var(--secondary-color)
 }
 
 .btnWrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 7rem;
+    padding-top: 30vh;
 }
 
 html, body {

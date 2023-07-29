@@ -9,35 +9,25 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        height: '100vh',
+      }}>
 
-      <div className='base'
-        style={{
-          backgroundImage: `url(${background.src})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          width: '100vw',
-          height: '100vh',
-        }}>
+      <NavBar />
+      <div className='home'>
+        <div>Greenpointe</div>
 
-        <NavBar />
-        <div className='home'>
-
-          <div className='btnWrapper'>
-            <Button type={`${BUTTON_TYPES.PRIMARY}`} btnText="Primary" />
-            <Button type={`${BUTTON_TYPES.SECONDARY}`} btnText="Secondary" />
-            <Button type={`${BUTTON_TYPES.TERTIARY}`} btnText="Tertiary" />
-          </div>
-
-        </div>
       </div>
-    </>
-
-
-
-
-
-
+      <div className='btnWrapper'>
+        <Button type={`${BUTTON_TYPES.PRIMARY}`} btnText="View Recipe" />
+        <Button type={`${BUTTON_TYPES.SECONDARY}`} btnText="Search Recipes" />
+      </div>
+    </div>
   )
 }
