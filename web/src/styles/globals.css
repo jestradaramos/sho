@@ -1,28 +1,32 @@
 :root {
-    --main-color: '#161B33';
-    --secondary-color: '#F1DAC4';
+    --main-color: #161B33;
+    --main-color-fade: rgba(22, 27, 51, 0.8);
+    --secondary-color: #F1DAC4;
+    --secondary-color-fade: rgba(241, 218, 196, 0.6);
+    --background-color: #FFFFFF;
 }
 
-body {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-}
-
-.MainAlignButtons {
-    position: absolute;
-    bottom: 25%;
-    width: 100vw;
+.home {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+    min-width: 100vw;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    color: var(--secondary-color)
 }
 
-.MainAlignName {
-    position: absolute;
-    width: 100vw;
-    text-align: center;
-    top: 15%;
+.btnWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 7rem;
+    padding-top: 30vh;
 }
 
-.NavButton {
-    width: 5vw;
-}
+html, body {
+    margin: 0;
+    padding: 0;
+   }

@@ -1,41 +1,33 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import Button from '../componenets/common/Button'
-import Image from 'next/image'
-import Box from '@mui/material/Box'
-import Stack from '@mui/material/Stack'
-import NavBar from '@/componenets/common/NavBar'
-import Typography from '@mui/material/Typography'
+import Button from '../componenets/button'
+import NavBar from '../componenets/navbar'
+import { BUTTON_TYPES } from '@/common/data/button'
+import background from '../../public/JER09793.jpg'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <>
-    <Image
-        src='/JER09793.jpg'
-        alt='Greenpointe'
-        quality={100}
-        fill
-        style={{ objectFit: 'cover' }}
-      />
-      <Head>
-        <title>Jeffy's Bar</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div
+      style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        width: '100vw',
+        height: '100vh',
+      }}>
 
-      <NavBar></NavBar>
+      <NavBar />
+      <div className='home'>
+        <div>Greenpointe</div>
 
-      <Typography className='MainAlignName' variant="h5" component="div"  color='#F1DAC4'>
-        greenpointe
-      </Typography>
-
-      <div className='MainAlignButtons'>
-        <Stack justifyContent={'center'} direction='row' spacing={{ xs: 4, sm: 8 }}>
-          <Button variant='primary'>View Recipe</Button>
-          <Button variant='secondary'>Search Others</Button>
-        </Stack>
       </div>
-    </>
+      <div className='btnWrapper'>
+        <Button type={`${BUTTON_TYPES.PRIMARY}`} btnText="View Recipe" />
+        <Button type={`${BUTTON_TYPES.SECONDARY}`} btnText="Search Recipes" />
+      </div>
+    </div>
   )
 }
